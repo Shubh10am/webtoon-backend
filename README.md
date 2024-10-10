@@ -1,8 +1,8 @@
-# User API
+# Webtoons API
 
 ## Overview
 
-The User API provides a robust interface for interacting with a webtoon application. It allows users to authenticate, manage webtoon entries, and retrieve webtoon details. This API is built using Flask and Flask-Restx, utilizing JWT for secure access.
+The Webtoons API provides a robust interface for interacting with a webtoon application. It allows users to authenticate, manage webtoon entries, and retrieve webtoon details. This API is built using Flask and Flask-Restx, utilizing JWT for secure access.
 
 ## Table of Contents
 
