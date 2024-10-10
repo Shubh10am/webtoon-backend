@@ -1,3 +1,4 @@
+import os
 import mongoengine
 from flask import g
 from flask import Flask
@@ -25,8 +26,21 @@ class DevelopmentConfig(BaseConfig):
     JWT_SECRET_KEY = 'test'
 
 
+class ProductionConfig(BaseConfig):
+    DEBUG = False
+    ENV = 'production'
+    SECRET_KEY = os.getenv('SECRET_KEY', 'test')
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'test')
+    MONGODB_SETTINGS = {
+        "db": "webtoons_db",
+        "host": os.getenv('MONGO_HOST', 'mongodb+srv://shubham12342019:shubh123@cluster0.oymgv.mongodb.net/'),
+        "connect": False
+    }
+
+
 def init_app():
-    config = DevelopmentConfig
+    # config = DevelopmentConfig    # for development
+    config = DevelopmentConfig if os.getenv('FLASK_ENV') == 'production' else ProductionConfig
 
     app.config.from_object(config)
     mongoengine.connect(**app.config["MONGODB_SETTINGS"])
